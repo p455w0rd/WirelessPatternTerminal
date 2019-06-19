@@ -32,7 +32,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import p455w0rd.ae2wtlib.api.WTApi;
-import p455w0rd.ae2wtlib.api.client.IBaubleItem;
 import p455w0rd.ae2wtlib.api.client.ReadableNumberConverter;
 import p455w0rd.ae2wtlib.api.item.ItemWT;
 import p455w0rd.wpt.api.IWirelessPatternTerminalItem;
@@ -44,7 +43,7 @@ import p455w0rd.wpt.util.WPTUtils;
  * @author p455w0rd
  *
  */
-public class ItemWPT extends ItemWT implements IWirelessPatternTerminalItem, IBaubleItem {
+public class ItemWPT extends ItemWT implements IWirelessPatternTerminalItem {
 
 	public ItemWPT() {
 		this(new ResourceLocation(ModGlobals.MODID, "wpt"));

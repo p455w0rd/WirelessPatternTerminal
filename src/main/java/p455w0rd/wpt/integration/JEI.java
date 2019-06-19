@@ -23,6 +23,7 @@ import javax.annotation.Nullable;
 
 import com.google.common.collect.Lists;
 
+import appeng.util.Platform;
 import mezz.jei.api.*;
 import mezz.jei.api.gui.IGuiIngredient;
 import mezz.jei.api.gui.IRecipeLayout;
@@ -94,6 +95,11 @@ public class JEI implements IModPlugin {
 						if (guiIngredient.isInput()) {
 							final List<ItemStack> currentList = guiIngredient.getAllIngredients();
 							ItemStack stack = currentList.isEmpty() ? ItemStack.EMPTY : currentList.get(0);
+							for (final ItemStack currentStack : currentList) {
+								if (Platform.isRecipePrioritized(currentStack)) {
+									stack = currentStack.copy();
+								}
+							}
 							if (stack == null) {
 								stack = ItemStack.EMPTY;
 							}
