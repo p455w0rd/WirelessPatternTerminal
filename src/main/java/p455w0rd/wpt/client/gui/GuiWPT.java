@@ -71,7 +71,6 @@ public class GuiWPT extends GuiWT implements ISortSource, IConfigManagerHost {
 
 	private static String memoryText = "";
 	private final ItemRepo repo;
-	private final int offsetX = 9;
 	private final int lowerTextureOffset = 0;
 	private final IConfigManager configSrc;
 	//private final boolean viewCell;
@@ -93,8 +92,8 @@ public class GuiWPT extends GuiWT implements ISortSource, IConfigManagerHost {
 	private final ContainerWPT containerWPT;
 
 	private boolean isJEIEnabled;
-	private final boolean wasTextboxFocused = false;
-	private final int screenResTicks = 0;
+	//private final boolean wasTextboxFocused = false;
+	//private final int screenResTicks = 0;
 	EntityLivingBase entity;
 	boolean isHalloween = false;
 
@@ -330,9 +329,9 @@ public class GuiWPT extends GuiWT implements ISortSource, IConfigManagerHost {
 		}
 
 		if (WTApi.instance().getConfig().isInfinityBoosterCardEnabled() && !WTApi.instance().isWTCreative(getWirelessTerminal())) {
-			final Slot boosterSlot = containerWPT.getBoosterSlot();
-			final int bx = boosterSlot.xPos;
-			final int by = boosterSlot.yPos;
+			//final Slot boosterSlot = containerWPT.getBoosterSlot();
+			//final int bx = boosterSlot.xPos;
+			//final int by = boosterSlot.yPos;
 
 			//drawTexturedModalRect(guiLeft + (bx - 2), guiTop + (by - 2), 237, 237, 19, 19);
 		}

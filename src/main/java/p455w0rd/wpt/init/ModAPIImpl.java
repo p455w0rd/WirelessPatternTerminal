@@ -22,7 +22,6 @@ import net.minecraftforge.common.util.FakePlayer;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.LoaderState;
 import net.minecraftforge.fml.relauncher.Side;
-import p455w0rd.ae2wtlib.api.ICustomWirelessTerminalItem;
 import p455w0rd.ae2wtlib.api.WTApi;
 import p455w0rd.wpt.WPT;
 import p455w0rd.wpt.api.IWirelessPatternTerminalItem;
@@ -59,23 +58,13 @@ public class ModAPIImpl extends WPTApi {
 
 	@Override
 	public void openWPTGui(final EntityPlayer player, final boolean isBauble, final int wptSlot) {
-		if ((player == null) || (player instanceof FakePlayer) || (player instanceof EntityPlayerMP) || FMLCommonHandler.instance().getSide() == Side.SERVER) {
+		if (player == null || player instanceof FakePlayer || player instanceof EntityPlayerMP || FMLCommonHandler.instance().getSide() == Side.SERVER) {
 			return;
 		}
-		ItemStack is = isBauble ? WTApi.instance().getBaublesUtility().getWTBySlot(player, wptSlot, IWirelessPatternTerminalItem.class) : WPTUtils.getWPTBySlot(player, wptSlot);
-		if (!is.isEmpty() && isTerminalLinked(is)) {
+		final ItemStack is = isBauble ? WTApi.instance().getBaublesUtility().getWTBySlot(player, wptSlot, IWirelessPatternTerminalItem.class) : WPTUtils.getWPTBySlot(player, wptSlot);
+		if (!is.isEmpty() && WTApi.instance().isTerminalLinked(is)) {
 			ModNetworking.instance().sendToServer(new PacketOpenGui(ModGuiHandler.GUI_WPT, isBauble, wptSlot));
 		}
-	}
-
-	@Override
-	public boolean isTerminalLinked(final ItemStack wirelessTerminalItemstack) {
-		String sourceKey = "";
-		if (wirelessTerminalItemstack.getItem() instanceof ICustomWirelessTerminalItem && wirelessTerminalItemstack.hasTagCompound()) {
-			sourceKey = ((ICustomWirelessTerminalItem) wirelessTerminalItemstack.getItem()).getEncryptionKey(wirelessTerminalItemstack);
-			return (sourceKey != null) && (!sourceKey.isEmpty());
-		}
-		return false;
 	}
 
 }
