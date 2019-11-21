@@ -51,7 +51,7 @@ import yalter.mousetweaks.api.MouseTweaksIgnore;
 @MouseTweaksIgnore
 public class GuiWPT extends GuiWT implements ISortSource, IConfigManagerHost {
 
-	private static final String BACKGROUND_CRAFTING_MODE = "gui/pattern.png";
+	private static final ResourceLocation BACKGROUND = new ResourceLocation(ModGlobals.MODID, "textures/gui/pattern.png");
 
 	private static final String SUBSITUTION_DISABLE = "0";
 	private static final String SUBSITUTION_ENABLE = "1";
@@ -288,8 +288,7 @@ public class GuiWPT extends GuiWT implements ISortSource, IConfigManagerHost {
 
 	@Override
 	public void drawBG(final int offsetX, final int offsetY, final int mouseX, final int mouseY) {
-		final ResourceLocation loc = new ResourceLocation(ModGlobals.MODID, "textures/" + getBackground());
-		mc.getTextureManager().bindTexture(loc);
+		mc.getTextureManager().bindTexture(BACKGROUND);
 		final int x_width = 197;
 		this.drawTexturedModalRect(offsetX, offsetY, 0, 0, x_width, 18);
 
@@ -703,13 +702,6 @@ public class GuiWPT extends GuiWT implements ISortSource, IConfigManagerHost {
 	@Override
 	protected boolean isPowered() {
 		return repo.hasPower();
-	}
-
-	protected String getBackground() {
-		//if (containerWPT.isCraftingMode()) {
-		return BACKGROUND_CRAFTING_MODE;
-		//}
-		//return BACKGROUND_PROCESSING_MODE;
 	}
 
 }
